@@ -6,22 +6,51 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 14:09:45 by lwiller           #+#    #+#             */
-/*   Updated: 2020/12/23 13:24:16 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/04 13:39:48 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
-int read_string(const char *input, va_list *list)
+int static check_input(const char *input, va_list *list, int i)
 {
-	int count_char;
-	int i;
 	char *str;
 	int result;
+	int count;
+
+	count = 0;
+	if (input[i] == 'c')
+		count += ft_putchar_int(va_arg(*list, int));
+	printf("//count1 = %d\n", count);
+	if (input[i] == 'd')
+	{
+		result = va_arg(*list, int);
+		str = ft_itoa(result);
+		count += ft_putstr_int(str);
+			printf("//count2 = %d\n", count);
+	}
+	if (input[i] == 's')
+	{
+		str = va_arg(*list, char *);
+		count += ft_putstr_int(str);
+			printf("//count3 = %d\n", count);
+	}
+	return (count);
+}
+
+int static read_string(const char *input, va_list *list)
+{
+	int count_char;
+	int count_var;
+	int i;
+	/*char *str;
+	int result;*/
 
 	count_char = 0;
-	str = NULL;
-	result = 0;
+	count_var = 0;
+	/*str = NULL;
+	result = 0;*/
 	i = 0;
 
 	while (input[i])
@@ -31,7 +60,8 @@ int read_string(const char *input, va_list *list)
 		if (input[i] == '%')
 		{
 			i++;
-			if (input[i] == 'c')
+			count_var = check_input(input, list, i);
+			/*if (input[i] == 'c')
 				count_char += ft_putchar_int(va_arg(*list, int));
 			if (input[i] == 'd')
 			{
@@ -43,7 +73,8 @@ int read_string(const char *input, va_list *list)
 			{
 				str = va_arg(*list, char*);
 				count_char += ft_putstr_int(str);
-			}
+			}*/
+			count_char += count_var; 
 		}
 		i++;
 	}
@@ -66,6 +97,8 @@ int ft_printf(const char *input, ...)
 int main()
 {
 	int rtn;
+	int rtn2;
+
 	char a;
 	char str[] = "ZXCVC";
 	int nb;
@@ -73,7 +106,8 @@ int main()
 	a = 't';
 	nb = 123;
 
-	rtn = ft_printf("bonjour! %d c'est %s moi %c qui teste", nb, str, a);
+	rtn = ft_printf("bonjour! %d c'est %s moi %c qui teste\n", nb, str, a);
+	rtn2 = printf("bonjour! %0xd c'est %s moi %c qui teste\n", nb, str, a);
 
-	printf("\nrtn = %d\n", rtn);
+	printf("\nrtn = %d\nrtn2 = %d\n", rtn, rtn2);
 }

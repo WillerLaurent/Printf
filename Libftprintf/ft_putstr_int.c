@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putstr_int.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/17 15:00:12 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/04 11:57:33 by lwiller          ###   ########lyon.fr   */
+/*   Created: 2021/01/04 06:57:21 by lwiller           #+#    #+#             */
+/*   Updated: 2021/01/04 07:22:31 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libftprintf.h"
 
-# include "Libftprintf/libftprintf.h"
-# include <stdarg.h>
-
-typedef struct	s_opt
+int		ft_putstr_int(char *str)
 {
-	char name;
-	char *type;
-}				t_opt;
+	int i;
 
-
-#endif
+	i = 0;
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	return (i);
+}

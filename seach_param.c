@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   seach_param.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/17 15:00:12 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/05 12:57:26 by lwiller          ###   ########lyon.fr   */
+/*   Created: 2021/01/05 11:04:29 by lwiller           #+#    #+#             */
+/*   Updated: 2021/01/05 11:05:30 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include "Libftprintf/libftprintf.h"
-# include <stdarg.h>
-
-#include <stdio.h>
-
-
-typedef struct	s_opt
+int		seach_param(char c)
 {
-	char	name;
-	int		pad_left;
-	int		hexa;
-	int		nb_zero;
-}				t_opt;
-
-int				display(t_opt a, va_list *list);
-void			init_opt(t_opt *a);
-int				seach_param(char c);
-
-
-
-
-#endif
+	if (c == 'd' || c == 'i' || c == 'p' || c == 'c' || c == 's' || c == 'x' ||
+	c == 'X')
+		return (1);
+	return (0);
+}

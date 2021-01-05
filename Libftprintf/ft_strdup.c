@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/17 15:00:12 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/05 12:57:26 by lwiller          ###   ########lyon.fr   */
+/*   Created: 2021/01/05 08:16:58 by lwiller           #+#    #+#             */
+/*   Updated: 2021/01/05 13:13:49 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libftprintf.h"
 
-# include "Libftprintf/libftprintf.h"
-# include <stdarg.h>
-
-#include <stdio.h>
-
-
-typedef struct	s_opt
+char	*ft_strdup(char *str)
 {
-	char	name;
-	int		pad_left;
-	int		hexa;
-	int		nb_zero;
-}				t_opt;
+	char	*cpy;
+	int		len;
+	int		i;
 
-int				display(t_opt a, va_list *list);
-void			init_opt(t_opt *a);
-int				seach_param(char c);
-
-
-
-
-#endif
+	i = 0;
+	len = ft_strlen(str);
+	if (!(cpy = malloc((len + 1) * sizeof(char))))
+		return (NULL);
+	cpy[len] = 0;
+	len--;
+	while (str[i])
+	{
+		cpy[i] = str[i];
+		i++;
+	}
+	return (cpy);
+}

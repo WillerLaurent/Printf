@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/17 15:00:12 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/05 12:57:26 by lwiller          ###   ########lyon.fr   */
+/*   Created: 2021/01/05 07:18:24 by lwiller           #+#    #+#             */
+/*   Updated: 2021/01/05 07:19:17 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libftprintf.h"
 
-# include "Libftprintf/libftprintf.h"
-# include <stdarg.h>
-
-#include <stdio.h>
-
-
-typedef struct	s_opt
+void	*ft_calloc(size_t count, size_t size)
 {
-	char	name;
-	int		pad_left;
-	int		hexa;
-	int		nb_zero;
-}				t_opt;
+	size_t	i;
+	void	*array;
 
-int				display(t_opt a, va_list *list);
-void			init_opt(t_opt *a);
-int				seach_param(char c);
-
-
-
-
-#endif
+	i = 0;
+	array = (void *)malloc(count * size);
+	if (!array)
+		return (NULL);
+	ft_bzero(array, count * size);
+	return (array);
+}

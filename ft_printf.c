@@ -6,55 +6,24 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 14:09:45 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/05 15:15:03 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/06 15:55:06 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_opt static check_opt(const char *input, int i, t_opt a)
-{
-	int j;
-	char *nbr;
-
-	j = i;
-	nbr = calloc(1, sizeof(char));
-	if (input[i] == '0')
-	{
-		if (input[i + 1] == 'x')
-			a.hexa = 1;
-		if (input[i + 1] == 'X')
-			a.hexa = 2;
-		i++;
-	}
-	while (ft_isdigit(input[i]))
-	{
-		nbr = ft_strjoin_right(nbr, input[i]);
-		i++;
-	}
-	if (input[i] == 'd' || input[i] == 'i')
-		a.name = 'd';
-	if (input[j] != '0')
-		a.pad_left = ft_atoi(nbr);
-	else
-		a.nb_zero = ft_atoi(nbr);
-
-	//printf("nb = %s, a.pad_left = %d, a.nb_zero = %d\n", nbr, a.pad_left, a.nb_zero);
-	free(nbr);
-	return (a);
-}
-
 int static check_input(const char *input, va_list *list, int i)
 {
-	//char *str;
-	//int result;
 	int count;
 	t_opt a;
 
 	count = 0;
 	init_opt(&a);
-	if (ft_isdigit(input[i]))
-		a = check_opt(input, i, a);
+	if (seach_convert(input[i]))
+		a.name = input[i];
+//	printf("a.name = %c\n", a.name);
+	if (!(seach_convert(input[i])))
+		a = check_opt(input, i, a, list);
 	count = display(a, list);
 	/*if (input[i] == 'c')
 		count += ft_putchar_int(va_arg(*list, int));
@@ -92,8 +61,8 @@ int static read_string(const char *input, va_list *list)
 		{
 			count_var = check_input(input, list, i + 1);
 			count_char += count_var;
-			while (seach_param(input[i]) == 0)
-				i++;			
+			while (seach_convert(input[i]) == 0)
+				i++;		
 		}
 		i++;
 	}
@@ -121,15 +90,17 @@ int main()
 	char a;
 	char str[] = "ZXCVC";
 	int nb;
+	int width;
 
 	a = 't';
 	nb = 123;
+	width = 10;
 
-	rtn = ft_printf("bonjour! |%010d| c'est %s moi %c qui teste\n", nb, nb, str, a);
+	rtn = ft_printf("bonjour! |%010d| c'est %s moi %c qui teste\n",width, nb, nb, str, a);
 	//rtn4 = ft_printf("bonjour! |%10d| c'est %s moi %c qui teste\n", nb, str, a);
 
-	rtn2 = printf("bonjour! |%010d|c'est %s moi %c qui teste\n", nb, str, a);
-	rtn3 = printf("bonjour! |%10d| c'est %s moi %c qui teste\n", nb, str, a);
+	rtn2 = printf("bonjour! |%10.4d|c'est %s moi %c qui teste\n", nb, str, a);
+	rtn3 = printf("bonjour! |%010d| c'est %s moi %c qui teste\n", nb, str, a);
 
 	printf("\nrtn = %d\nrtn2 = %d\nrtn3 = %d\n", rtn, rtn2, rtn3);
 
@@ -140,7 +111,7 @@ int main()
 
 	/*ret = ft_printf("Moi : |%16.2x|", -24);
 	ft_printf("MoiR : ret = |%d|\n", ret);*/
-	ret = printf("Lui : |%16x|", -24);
+	ret = printf("Lui : |%u|", 24);
 	printf("LuiR : ret = |%d|\n", ret);
 	i++;ft_printf("i = %d\n\n-------------------\n\n", i);
 

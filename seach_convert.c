@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_opt.c                                         :+:      :+:    :+:   */
+/*   seach_convert.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/05 10:33:25 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/06 12:58:02 by lwiller          ###   ########lyon.fr   */
+/*   Created: 2021/01/05 11:04:29 by lwiller           #+#    #+#             */
+/*   Updated: 2021/01/05 11:05:30 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	init_opt(t_opt *a)
+int		seach_convert(char c)
 {
-	a->name = 0;
-	a->indicator = 0;
-	a->nb_zero = 0;
-	a->width = 1;//valeurs : -1 = *, par defaut = 1
-	a->precision = -2; //valeurs : -1 = *, -2 par defaut
+	if (c == 'd' || c == 'i' || c == 'p' || c == 'c' || c == 's' || c == 'x' ||
+	c == 'X' || c == 'u')
+		return (1);
+	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 07:01:20 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/06 15:29:01 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/07 08:06:46 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int static display_zero_left(t_opt a, char *str, int count)
+/*int static display_zero_left(t_opt a, char *str, int count)
 {
 	if (a.width > ft_strlen(str))
 		a.width = a.width - ft_strlen(str);
@@ -78,14 +78,13 @@ int display_d(t_opt a, va_list *list)
 	else
 		count  = ft_putstr_int(str);
 	return (count);
-}
+}*/
 
-int display(t_opt a, va_list *list)
+int display(char *str)
 {
 	int count;
 
 	count = 0;
-	if (a.name == 'd' || a.name == 'i')
-		count = display_d(a, list);
+	count = ft_putstr_int(str);
 	return (count);
 }

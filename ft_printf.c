@@ -6,7 +6,7 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 14:09:45 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/06 15:55:06 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/07 13:37:17 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,24 @@ int static check_input(const char *input, va_list *list, int i)
 {
 	int count;
 	t_opt a;
+	char *str;
 
 	count = 0;
+	str = NULL;
 	init_opt(&a);
-	if (seach_convert(input[i]))
-		a.name = input[i];
-//	printf("a.name = %c\n", a.name);
-	if (!(seach_convert(input[i])))
-		a = check_opt(input, i, a, list);
-	count = display(a, list);
+	/*if (seach_convert(input[i]))
+	{
+				a.type = input[i];
+				a.data = 
+
+	}*/
+	//	printf("a.type = %c\n", a.type);
+	//if (!(seach_convert(input[i])))
+	a = check_opt(input, i, a, list);
+	str = make_string(a, str);
+	count = display(str);
+	if (ft_strlen(str) > 0)
+		free(str);
 	/*if (input[i] == 'c')
 		count += ft_putchar_int(va_arg(*list, int));
 	printf("//count1 = %d\n", count);
@@ -62,7 +71,7 @@ int static read_string(const char *input, va_list *list)
 			count_var = check_input(input, list, i + 1);
 			count_char += count_var;
 			while (seach_convert(input[i]) == 0)
-				i++;		
+				i++;
 		}
 		i++;
 	}
@@ -85,7 +94,7 @@ int main()
 	int rtn;
 	int rtn2;
 	int rtn3;
-//	int rtn4;
+	//	int rtn4;
 
 	char a;
 	char str[] = "ZXCVC";
@@ -96,7 +105,7 @@ int main()
 	nb = 123;
 	width = 10;
 
-	rtn = ft_printf("bonjour! |%010d| c'est %s moi %c qui teste\n",width, nb, nb, str, a);
+	rtn = ft_printf("bonjour! |%10.4d| c'est  moi qui teste\n", nb);
 	//rtn4 = ft_printf("bonjour! |%10d| c'est %s moi %c qui teste\n", nb, str, a);
 
 	rtn2 = printf("bonjour! |%10.4d|c'est %s moi %c qui teste\n", nb, str, a);
@@ -113,12 +122,13 @@ int main()
 	ft_printf("MoiR : ret = |%d|\n", ret);*/
 	ret = printf("Lui : |%u|", 24);
 	printf("LuiR : ret = |%d|\n", ret);
-	i++;ft_printf("i = %d\n\n-------------------\n\n", i);
+	i++;
+	ft_printf("i = %d\n\n-------------------\n\n", i);
 
 	/*ret = ft_printf("Moi : |%16.4X|", -24);
 	ft_printf("MoiR : ret = |%d|\n", ret);*/
 	ret = printf("Lui : |%16.4X|", -24);
 	printf("LuiR : ret = |%d|\n", ret);
-	i++;printf("i = %d\n\n-------------------\n\n", i);
-
+	i++;
+	printf("i = %d\n\n-------------------\n\n", i);
 }

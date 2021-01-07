@@ -1,0 +1,88 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   make_string.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/07 07:02:56 by lwiller           #+#    #+#             */
+/*   Updated: 2021/01/07 13:53:27 by lwiller          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+
+char static *add_pad_right(char *str, int size)
+{
+	int len_str;
+
+	len_str = ft_strlen(str);
+	if (size > len_str)
+		size = size - len_str;
+	if (size < len_str)
+		size = len_str;
+	while (size > 0)
+	{
+		str = ft_strjoin_right(str, ' ');
+		size--;
+	}
+	return (str);
+}
+
+char static *add_zero_left(char *str, int size)
+{
+	int len_str;
+
+	len_str = ft_strlen(str);
+	if (size > len_str)
+		size = size - len_str;
+	else if (size < len_str)
+		size = len_str;
+	while (size > 0)
+	{
+		str = ft_strjoin_left('0', str);
+		size--;
+	}
+	return (str);
+}
+
+char static *add_pad_left(char *str, int size)
+{
+	int len_str;
+
+	len_str = ft_strlen(str);
+	if (size > len_str)
+		size = size - len_str;
+	if (size < len_str)
+		size = len_str;
+	while (size > 0)
+	{
+		str = ft_strjoin_left(' ', str);
+		size--;
+	}
+	return (str);
+}
+
+char static *mk_string_d(t_opt a, char *str)
+{
+	str = a.data;
+	if (a.precision > ft_strlen(str))
+		str = add_zero_left(str, a.precision);
+	if (a.width > ft_strlen(str))
+	{
+		if (a.indicator == '-')
+			str = add_pad_right(str, a.width);
+		else if (a.precision > 0 || a.indicator != '0')
+			str = add_pad_left(str, a.width);
+		else if (a.precision < 0 && a.indicator == '0')
+			str = add_zero_left(str, a.width);
+	}
+	return (str);
+}
+
+char *make_string(t_opt a, char *str)
+{
+	if (a.type == 'd' || a.type == 'i')
+		str = mk_string_d(a, str);
+	return (str);
+}

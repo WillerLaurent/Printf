@@ -6,7 +6,7 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 15:00:12 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/08 10:02:43 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/08 15:23:04 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct	s_opt
 	char	type;
 	char	indicator;
 	int		width;
-	int		nb_zero;
+	int		sign_neg;
 	int		precision;
 	char	*data;
 }				t_opt;

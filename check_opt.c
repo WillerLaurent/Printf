@@ -6,7 +6,7 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 10:05:43 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/08 10:46:37 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/08 15:24:22 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ t_opt check_opt(const char *input, int i, t_opt a, va_list *list)
 	char c;
 
 	nbr = calloc(1, sizeof(char));
+
+	/*indicator rempli a.indicator*/
 	if (input[i] == '0' || input[i] == '-')
 	{
 		a.indicator = input[i];
@@ -49,6 +51,8 @@ t_opt check_opt(const char *input, int i, t_opt a, va_list *list)
 		}
 		i++;
 	}
+
+	/*width rempli a.width*/
 	if (ft_isdigit(input[i]))
 	{
 		while (ft_isdigit(input[i]))
@@ -63,6 +67,8 @@ t_opt check_opt(const char *input, int i, t_opt a, va_list *list)
 		a.width = va_arg(*list, int);
 		i++;
 	}
+
+	/*precision rempli a.precision*/
 	if (input[i] == '.')
 	{
 		i++;
@@ -70,6 +76,8 @@ t_opt check_opt(const char *input, int i, t_opt a, va_list *list)
 		while (ft_isdigit(input[i]))
 			i++;
 	}
+
+	/*type rempli a.data*/
 	if (seach_convert(input[i]))
 	{
 		a.type = input[i];
@@ -79,6 +87,12 @@ t_opt check_opt(const char *input, int i, t_opt a, va_list *list)
 				n = va_arg(*list, unsigned int);
 			else
 				n = va_arg(*list, int);
+				//metre valeur abs ds itoa, mettre champ sign_neg a 1
+			if (n < 0)
+			{
+				n = n * (-1);
+				a.sign_neg = 1;				
+			}
 			a.data = ft_itoa(n);
 		}
 		if (a.type == 's')
@@ -88,6 +102,19 @@ t_opt check_opt(const char *input, int i, t_opt a, va_list *list)
 			c = va_arg(*list, int);
 			a.data = ft_calloc(2, sizeof(char));
 			a.data[0] = c;
+		}
+		if (a.type == '%')
+		{
+			a.data = ft_calloc(2, sizeof(char));
+			a.data[0] = '%';
+		}
+		if (a.type == 'x' || a.type == 'X')
+		{
+			n = va_arg(*list, unsigned int);
+			if (a.type == 'x')
+				a.data = ft_iota_base(n, BASE16L);
+			else
+				a.data = ft_iota_base(n, BASE16U);
 		}
 	}
 

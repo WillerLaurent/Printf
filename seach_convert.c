@@ -15,7 +15,7 @@
 int		seach_convert(char c)
 {
 	if (c == 'd' || c == 'i' || c == 'p' || c == 'c' || c == 's' || c == 'x' ||
-	c == 'X' || c == 'u')
+	c == 'X' || c == 'u' || c == '%')
 		return (1);
 	return (0);
 }

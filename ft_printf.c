@@ -6,7 +6,7 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 14:09:45 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/08 10:35:12 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/08 16:01:50 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ int static read_string(const char *input, va_list *list)
 			count_char += ft_putchar_int(input[i]);
 		if (input[i] == '%')
 		{
-			count_var = check_input(input, list, i + 1);
+			i++;
+			count_var = check_input(input, list, i);
 			count_char += count_var;
 			while (seach_convert(input[i]) == 0)
 				i++;
@@ -93,49 +94,138 @@ int ft_printf(const char *input, ...)
 
 int main()
 {
-	//int rtn;
-	/*int rtn2;
-	int rtn3;*/
-	//	int rtn4;
-
-	char a;
-	//char str[] = "ZXCVC";
-	int nb;
-	int width;
-
-	a = 't';
-	nb = 123;
-	width = 10;
-
-//	rtn = ft_printf("bonjour! |%.4s| c'est  moi qui teste\n", "asdfgh");
-	//ft_printf("|%-10.4s|\n", "asdfgh");
-//	ft_printf("caractere c = %c\n", 'z');
-	//rtn4 = ft_printf("bonjour! |%10d| c'est %s moi %c qui teste\n", nb, str, a);
-
-	//rtn2 = printf("bonjour! |%.0d|c'est %s moi %c qui teste\n", nb, str, a);
-	//printf("|%-10.4s|\n", "asdfgh");
-//	printf("caractere c = %c\n", 'z');
-
-	//rtn3 = printf("bonjour! |%010d| c'est %s moi %c qui teste\n", nb, str, a);
-
-//	printf("\nrtn = %d\nrtn2 = %d\nrtn3 = %d\n", rtn, rtn2, rtn3);
-
 	int ret;
 	int i;
 
 	i = -1;
+	ret = ft_printf("Moi : |%16.2x|", -24);
+	ft_printf("MoiR : ret = |%d|\n", ret);
+	ret = printf("Lui : |%016.2x|", -24);
+	printf("LuiR : ret = |%d|\n", ret);
+	i++;ft_printf("i = %d\n\n-------------------\n\n", i);
 
-	/*ret = ft_printf("Moi : |%16.2x|", -24);
-	ft_printf("MoiR : ret = |%d|\n", ret);*/
-	ret = ft_printf("Lui : |%u|", -36);
+	ret = ft_printf("Moi : |%16.4X|", -24);
+	ft_printf("MoiR : ret = |%d|\n", ret);
+	ret = printf("Lui : |%16.4X|", -24);
+	printf("LuiR : ret = |%d|\n", ret);
+	i++;ft_printf("i = %d\n\n-------------------\n\n", i);
+
+
+	ret = ft_printf("Moi : |%3%|");
+	ft_printf("MoiR : ret = |%d|\n", ret);
+	ret = printf("Lui : |%3%|");
 	printf("LuiR : ret = |%d|\n", ret);
 	i++;
 	ft_printf("i = %d\n\n-------------------\n\n", i);
 
-	/*ret = ft_printf("Moi : |%16.4X|", -24);
-	ft_printf("MoiR : ret = |%d|\n", ret);*/
-	ret = printf("Lui : |%u|", -36);
+	ret = ft_printf("Moi : |%16.2u|", -24);
+	ft_printf("MoiR : ret = |%d|\n", ret);
+	ret = printf("Lui : |%16.2u|", -24);
 	printf("LuiR : ret = |%d|\n", ret);
-	i++;
-	printf("i = %d\n\n-------------------\n\n", i);
+	i++;ft_printf("i = %d\n\n-------------------\n\n", i);
+
+	ret = ft_printf("Moi : |%16.2u|", 24);
+	ft_printf("MoiR : ret = |%d|\n", ret);
+	ret = printf("Lui : |%16.2u|", 24);
+	printf("LuiR : ret = |%d|\n", ret);
+	i++;ft_printf("i = %d\n\n-------------------\n\n", i);
+
+	ret = ft_printf("Moi : |%16.2u|", 2468);
+	ft_printf("MoiR : ret = |%d|\n", ret);
+	ret = printf("Lui : |%16.2u|", 2468);
+	printf("LuiR : ret = |%d|\n", ret);
+	i++;ft_printf("i = %d\n\n-------------------\n\n", i);
+
+	ret = ft_printf("Moi : |%16.2u|", 2);
+	ft_printf("MoiR : ret = |%d|\n", ret);
+	ret = printf("Lui : |%16.2u|", 2);
+	printf("LuiR : ret = |%d|\n", ret);
+	i++;ft_printf("i = %d\n\n-------------------\n\n", i);
+
+	ret = ft_printf("Moi : |%-45.0u|", 0);
+	ft_printf("MoiR : ret = |%d|\n", ret);
+	ret = printf("Lui : |%-45.0u|", 0);
+	printf("LuiR : ret = |%d|\n", ret);
+	i++;ft_printf("i = %d\n\n-------------------\n\n", i);
+
+	ret = ft_printf("Moi : |%45.0u|", 0);
+	ft_printf("MoiR : ret = |%d|\n", ret);
+	ret = printf("Lui : |%45.0u|", 0);
+	printf("LuiR : ret = |%d|\n", ret);
+	i++;ft_printf("i = %d\n\n-------------------\n\n", i);
+
+	ret = ft_printf("Moi : |%0.0u|", 0);
+	ft_printf("MoiR : ret = |%d|\n", ret);
+	ret = printf("Lui : |%0.0u|", 0);
+	printf("LuiR : ret = |%d|\n", ret);
+	i++;ft_printf("i = %d\n\n-------------------\n\n", i);
+//10
+
+ret = ft_printf("Moi : |%0.0d|", 0);
+	ft_printf("MoiR : ret = |%d|\n", ret);
+	ret = printf("Lui : |%0.0d|", 0);
+	printf("LuiR : ret = |%d|\n", ret);
+	i++;ft_printf("i = %d\n\n-------------------\n\n", i);
+
+	ret = ft_printf("Moi : |%0.0x|", 0);
+	ft_printf("MoiR : ret = |%d|\n", ret);
+	ret = printf("Lui : |%0.0x|", 0);
+	printf("LuiR : ret = |%d|\n", ret);
+	i++;ft_printf("i = %d\n\n-------------------\n\n", i);
+
+
+
+	ret = ft_printf("Moi : |%-10.8X|%d|%5.4d|%x|%X|d|", -1, 123, 456, 7, 8);
+	ft_printf("MoiR : ret = |%d|\n", ret);
+	ret = printf("Lui : |%-10.8X|%d|%5.4d|%x|%X|d|", -1, 123, 456, 7, 8);
+	printf("LuiR : ret = |%d|\n", ret);
+	i++;ft_printf("i = %d\n\n-------------------\n\n", i);
+
+	ret = ft_printf("Moi : |%-10.8X|%-10.8d|%5.4d|%x|%X|d|", -1, 123, 456, 7, 8);
+	ft_printf("MoiR : ret = |%d|\n", ret);
+	ret = printf("Lui : |%-10.8X|%-10.8d|%5.4d|%x|%X|d|", -1, 123, 456, 7, 8);
+	printf("LuiR : ret = |%d|\n", ret);
+	i++;ft_printf("i = %d\n\n-------------------\n\n", i);
+
+
+
+	ret = ft_printf("Moi : |%-10.8X|", -1);
+	ft_printf("MoiR : ret = |%d|\n", ret);
+	ret = printf("Lui : |%-10.8X|", -1);
+	printf("LuiR : ret = |%d|\n", ret);
+	i++;ft_printf("i = %d\n\n-------------------\n\n", i);
+
+
+
+	ret = ft_printf("Moi : |%.x|", 0);
+	ft_printf("MoiR : ret = |%d|\n", ret);
+	ret = printf("Lui : |%.x|", 0);
+	printf("LuiR : ret = |%d|\n", ret);
+	i++;ft_printf("i = %d\n\n-------------------\n\n", i);
+
+	ret = ft_printf("Moi : |%-10.8X|", -12354);
+	ft_printf("MoiR : ret = |%d|\n", ret);
+	ret = printf("Lui : |%-10.8X|", -12354);
+	printf("LuiR : ret = |%d|\n", ret);
+	i++;ft_printf("i = %d\n\n-------------------\n\n", i);
+
+
+
+	ret = ft_printf("Moi : |%10d|", -12354);
+	ft_printf("MoiR : ret = |%d|\n", ret);
+	ret = printf("Lui : |%10d|", -12354);
+	printf("LuiR : ret = |%d|\n", ret);
+	i++;ft_printf("i = %d\n\n-------------------\n\n", i);
+
+	ret = ft_printf("Moi : |%10.6d|", -12354);
+	ft_printf("MoiR : ret = |%d|\n", ret);
+	ret = printf("Lui : |%10.6d|", -12354);
+	printf("LuiR : ret = |%d|\n", ret);
+	i++;ft_printf("i = %d\n\n-------------------\n\n", i);
+
+	ret = ft_printf("Moi : |%10.7d|", -12354);
+	ft_printf("MoiR : ret = |%d|\n", ret);
+	ret = printf("Lui : |%10.7d|", -12354);
+	printf("LuiR : ret = |%d|\n", ret);
+	i++;ft_printf("i = %d\n\n-------------------\n\n", i);
 }

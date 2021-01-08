@@ -6,15 +6,15 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 05:28:18 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/04 07:22:42 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/08 10:47:24 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static char	*mk_str(char *str, int n, int len)
+static char	*mk_str(char *str, long int n, int len)
 {
-	long	nb;
+	long int	nb;
 
 	nb = n;
 	if (nb < 0)
@@ -30,11 +30,11 @@ static char	*mk_str(char *str, int n, int len)
 	return (str);
 }
 
-char		*ft_itoa(int n)
+char		*ft_itoa(long int n)
 {
-	int		len;
-	long	nb;
-	char	*rtn;
+	int			len;
+	long int	nb;
+	char		*rtn;
 
 	nb = n;
 	len = 1;

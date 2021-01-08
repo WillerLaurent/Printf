@@ -6,7 +6,7 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 14:09:45 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/07 13:37:17 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/08 10:35:12 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int static check_input(const char *input, va_list *list, int i)
 	//if (!(seach_convert(input[i])))
 	a = check_opt(input, i, a, list);
 	str = make_string(a, str);
+	
+
 	count = display(str);
 	if (ft_strlen(str) > 0)
 		free(str);
@@ -91,13 +93,13 @@ int ft_printf(const char *input, ...)
 
 int main()
 {
-	int rtn;
-	int rtn2;
-	int rtn3;
+	//int rtn;
+	/*int rtn2;
+	int rtn3;*/
 	//	int rtn4;
 
 	char a;
-	char str[] = "ZXCVC";
+	//char str[] = "ZXCVC";
 	int nb;
 	int width;
 
@@ -105,13 +107,18 @@ int main()
 	nb = 123;
 	width = 10;
 
-	rtn = ft_printf("bonjour! |%10.4d| c'est  moi qui teste\n", nb);
+//	rtn = ft_printf("bonjour! |%.4s| c'est  moi qui teste\n", "asdfgh");
+	//ft_printf("|%-10.4s|\n", "asdfgh");
+//	ft_printf("caractere c = %c\n", 'z');
 	//rtn4 = ft_printf("bonjour! |%10d| c'est %s moi %c qui teste\n", nb, str, a);
 
-	rtn2 = printf("bonjour! |%10.4d|c'est %s moi %c qui teste\n", nb, str, a);
-	rtn3 = printf("bonjour! |%010d| c'est %s moi %c qui teste\n", nb, str, a);
+	//rtn2 = printf("bonjour! |%.0d|c'est %s moi %c qui teste\n", nb, str, a);
+	//printf("|%-10.4s|\n", "asdfgh");
+//	printf("caractere c = %c\n", 'z');
 
-	printf("\nrtn = %d\nrtn2 = %d\nrtn3 = %d\n", rtn, rtn2, rtn3);
+	//rtn3 = printf("bonjour! |%010d| c'est %s moi %c qui teste\n", nb, str, a);
+
+//	printf("\nrtn = %d\nrtn2 = %d\nrtn3 = %d\n", rtn, rtn2, rtn3);
 
 	int ret;
 	int i;
@@ -120,14 +127,14 @@ int main()
 
 	/*ret = ft_printf("Moi : |%16.2x|", -24);
 	ft_printf("MoiR : ret = |%d|\n", ret);*/
-	ret = printf("Lui : |%u|", 24);
+	ret = ft_printf("Lui : |%u|", -36);
 	printf("LuiR : ret = |%d|\n", ret);
 	i++;
 	ft_printf("i = %d\n\n-------------------\n\n", i);
 
 	/*ret = ft_printf("Moi : |%16.4X|", -24);
 	ft_printf("MoiR : ret = |%d|\n", ret);*/
-	ret = printf("Lui : |%16.4X|", -24);
+	ret = printf("Lui : |%u|", -36);
 	printf("LuiR : ret = |%d|\n", ret);
 	i++;
 	printf("i = %d\n\n-------------------\n\n", i);

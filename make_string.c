@@ -6,13 +6,13 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 07:02:56 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/07 13:53:27 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/08 10:15:33 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char static *add_pad_right(char *str, int size)
+char *add_pad_right(char *str, int size)
 {
 	int len_str;
 
@@ -29,7 +29,7 @@ char static *add_pad_right(char *str, int size)
 	return (str);
 }
 
-char static *add_zero_left(char *str, int size)
+char *add_zero_left(char *str, int size)
 {
 	int len_str;
 
@@ -46,7 +46,7 @@ char static *add_zero_left(char *str, int size)
 	return (str);
 }
 
-char static *add_pad_left(char *str, int size)
+char *add_pad_left(char *str, int size)
 {
 	int len_str;
 
@@ -63,16 +63,18 @@ char static *add_pad_left(char *str, int size)
 	return (str);
 }
 
-char static *mk_string_d(t_opt a, char *str)
+char *mk_string_d(t_opt a, char *str)
 {
-	str = a.data;
-	if (a.precision > ft_strlen(str))
+	str = ft_strdup(a.data);
+	if (a.precision == 0 && str[0]== '0' && ft_strlen(str) == 1)
+		str = "";
+	else if (a.precision > ft_strlen(str))
 		str = add_zero_left(str, a.precision);
 	if (a.width > ft_strlen(str))
 	{
 		if (a.indicator == '-')
 			str = add_pad_right(str, a.width);
-		else if (a.precision > 0 || a.indicator != '0')
+		else if (a.precision >= 0 || a.indicator != '0')
 			str = add_pad_left(str, a.width);
 		else if (a.precision < 0 && a.indicator == '0')
 			str = add_zero_left(str, a.width);
@@ -80,9 +82,26 @@ char static *mk_string_d(t_opt a, char *str)
 	return (str);
 }
 
+char *mk_string_s(t_opt a, char *str)
+{
+	if (a.precision > 0 && a.precision < ft_strlen(a.data))
+		str = ft_substr(a.data, 0, a.precision);
+	else
+		str = ft_strdup(a.data);
+	if (a.width > ft_strlen(str) && a.indicator == '-')
+		str = add_pad_right(str, a.width);
+	else if (a.width > ft_strlen(str))
+		str = add_pad_left(str, a.width);
+	return (str);
+}
+
 char *make_string(t_opt a, char *str)
 {
-	if (a.type == 'd' || a.type == 'i')
+	if (a.type == 'd' || a.type == 'i' || a.type == 'u')
 		str = mk_string_d(a, str);
+	if (a.type == 's')
+		str = mk_string_s(a, str);
+	if (a.type == 'c')
+		str = ft_strdup(a.data);
 	return (str);
 }

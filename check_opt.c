@@ -6,7 +6,7 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 10:05:43 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/07 13:40:12 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/08 10:46:37 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ t_opt static check_precision(const char *input, t_opt a, int i, va_list *list)
 	else if (input[i] == '*')
 		a.precision = va_arg(*list, int);
 	free(nbr);
-	//printf("a.precision = %d", a.precision);
 	return (a);
 }
 
 t_opt check_opt(const char *input, int i, t_opt a, va_list *list)
 {
 	char *nbr;
-	int n;
+	int long n;
+	char c;
 
 	nbr = calloc(1, sizeof(char));
 	if (input[i] == '0' || input[i] == '-')
@@ -68,18 +68,27 @@ t_opt check_opt(const char *input, int i, t_opt a, va_list *list)
 		i++;
 		a = check_precision(input, a, i, list);
 		while (ft_isdigit(input[i]))
-			i++;		
+			i++;
 	}
 	if (seach_convert(input[i]))
 	{
 		a.type = input[i];
-		if (a.type == 'd' || a.type == 'i')
+		if (a.type == 'd' || a.type == 'i' || a.type == 'u')
 		{
-			n = va_arg(*list, int);
+			if (a.type == 'u')
+				n = va_arg(*list, unsigned int);
+			else
+				n = va_arg(*list, int);
 			a.data = ft_itoa(n);
 		}
 		if (a.type == 's')
-			a.data = ft_strdup(va_arg(*list, char*));
+			a.data = va_arg(*list, char *);
+		if (a.type == 'c')
+		{
+			c = va_arg(*list, int);
+			a.data = ft_calloc(2, sizeof(char));
+			a.data[0] = c;
+		}
 	}
 
 	//printf("\na.width = %d\n", a.width);

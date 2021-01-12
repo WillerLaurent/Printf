@@ -6,13 +6,13 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 13:39:32 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/04 07:22:22 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/12 16:40:44 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int 	ft_putchar_int(char c)
+int		ft_putchar_int(char c)
 {
 	write(1, &c, 1);
 	return (1);

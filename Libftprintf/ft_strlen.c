@@ -6,18 +6,18 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 13:33:18 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/05 10:00:33 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/12 16:42:50 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int 	ft_strlen(char *str)
+int		ft_strlen(char *str)
 {
 	int i;
 
 	i = 0;
 	while (str[i])
 		i++;
-	return (i);	
+	return (i);
 }

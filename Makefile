@@ -6,7 +6,7 @@
 #    By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/04 07:31:33 by lwiller           #+#    #+#              #
-#    Updated: 2021/01/08 12:00:25 by lwiller          ###   ########lyon.fr    #
+#    Updated: 2021/01/12 16:48:15 by lwiller          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,5 +42,9 @@ fclean:	clean
 		rm -f ${NAME}
 
 re:		fclean all
+
+norme:	
+		norminette -R CheckForbiddenSourceHeader *.c */*.c
+		norminette -R CheckDefine *.h */*.h
 
 .PHONY: fclean clean re all

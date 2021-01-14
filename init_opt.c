@@ -6,7 +6,7 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 10:33:25 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/12 15:50:42 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/14 11:09:15 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ void	init_opt(t_opt *a)
 	a->precision = 0;
 	a->prec_exist = 0;
 	a->data = NULL;
+	a->malloc_data = 0;
 }

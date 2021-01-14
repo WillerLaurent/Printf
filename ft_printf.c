@@ -6,7 +6,7 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 14:09:45 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/12 16:37:27 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/14 11:45:39 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ int	check_input(const char *input, va_list *list, int i)
 	a = check_opt(input, i, a, list);
 	str = make_string(a, str);
 	count = display(str, a);
-	if (ft_strlen(str) > 0)
-		free(str);
+	if (a.malloc_data == 1)
+		free(a.data);
+	free(str);
 	return (count);
 }
 

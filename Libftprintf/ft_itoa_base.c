@@ -6,7 +6,7 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 11:07:00 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/12 16:44:23 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/18 16:14:27 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char		*ft_iota_base(unsigned long long nb, char *base)
 		a = a / ln_bs;
 		count++;
 	}
-	if (!(rtn = malloc(count * sizeof(char))))
+	if (!(rtn = ft_calloc(count, sizeof(char))))
 		return (0);
 	rtn = ft_iota_base_2(count, nb, rtn, base);
 	return (rtn);

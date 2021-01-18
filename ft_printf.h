@@ -6,7 +6,7 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 15:00:12 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/14 11:09:39 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/18 09:40:25 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct	s_opt
 	int		sign_pos;
 	int		precision;
 	int		prec_exist;
+	int		c_zero;
 	char	*data;
 	int		malloc_data;
 }				t_opt;

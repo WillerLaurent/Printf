@@ -6,7 +6,7 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 05:28:18 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/12 10:02:07 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/18 15:05:04 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char		*ft_itoa(long long n)
 		nb = nb / 10;
 		len++;
 	}
-	if (!(rtn = malloc((len + 1) * sizeof(char))))
+	if (!(rtn = ft_calloc((len + 1), sizeof(char))))
 		return (NULL);
 	rtn[len] = 0;
 	len--;

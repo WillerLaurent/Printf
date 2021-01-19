@@ -6,7 +6,7 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 08:35:18 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/18 13:36:21 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/19 08:20:21 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*mk_string_d(t_opt a, char *str)
 		a.prec_exist = 0;
 	if (a.prec_exist == 1)
 	{
-			str = mk_str_with_prec(a, str);
+		str = mk_str_with_prec(a, str);
 	}
 	else if (a.prec_exist == 0 && a.width > ft_strlen(str))
 	{

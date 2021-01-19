@@ -6,7 +6,7 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 07:02:56 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/18 16:52:02 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/19 09:26:23 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ char static	*mk_string_s(t_opt a, char *str)
 
 char static	*mk_string_c(t_opt a, char *str)
 {
-	/*if (a.data == 0)
-		str = ft_strdup("\0");*/
 	if (a.c_zero == 1)
 	{
 		free(str);
@@ -70,11 +68,13 @@ char static	*mk_string_prc(t_opt a, char *str)
 char static	*mk_string_p(t_opt a, char *str)
 {
 	str = ft_strdup("0x");
-	/*if (a.data[0] == '0' && a.data[1] == '\0' && a.prec_exist == 1
-	&& a.width == 0)
-		return (str);
-	if (a.data[0] != '0')*/
+	if (a.data[0] == '0' && a.data[1] == '\0' && a.prec_exist == 1)
+		str = ft_strdup("0x");
+	else
+	{
+		str = ft_strdup("0x");
 		str = ft_strjoin(str, a.data);
+	}
 	if (a.width > ft_strlen(str))
 	{
 		if (a.indicator == '-')

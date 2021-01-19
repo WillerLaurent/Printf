@@ -6,7 +6,7 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 15:00:12 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/18 09:40:25 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/19 08:13:53 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,10 @@ char			*add_pad_right(char *str, int size);
 char			*add_zero_left(char *str, int size);
 char			*add_pad_left(char *str, int size);
 int				ft_printf(const char *input, ...);
+t_opt			check_convert_digit(t_opt a, va_list *list);
+t_opt			check_convert_pointer(t_opt a, va_list *list);
+t_opt			check_convert_hexa(t_opt a, va_list *list);
+t_opt			check_convert_s(t_opt a, va_list *list);
+t_opt			check_convert_c(t_opt a, va_list *list);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 14:09:45 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/14 11:45:39 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/19 07:52:38 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	read_string(const char *input, va_list *list)
 	{
 		if (input[i] != '%')
 			count_char += ft_putchar_int(input[i]);
-		if (input[i] == '%')
+		else if (input[i] == '%')
 		{
 			i++;
 			count_var = check_input(input, list, i);

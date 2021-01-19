@@ -6,7 +6,7 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 07:02:56 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/19 09:26:23 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/19 11:10:04 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ char static	*mk_string_prc(t_opt a, char *str)
 
 char static	*mk_string_p(t_opt a, char *str)
 {
-	str = ft_strdup("0x");
 	if (a.data[0] == '0' && a.data[1] == '\0' && a.prec_exist == 1)
 		str = ft_strdup("0x");
 	else

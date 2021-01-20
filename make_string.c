@@ -6,7 +6,7 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 07:02:56 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/19 11:10:04 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/20 08:37:23 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ char static	*mk_string_s(t_opt a, char *str)
 		str = ft_strdup(a.data);
 	if (a.width > ft_strlen(str) && a.indicator == '-')
 		str = add_pad_right(str, a.width);
+	else if (a.width > ft_strlen(str) && a.indicator == '0')
+		str = add_zero_left(str, a.width);
 	else if (a.width > ft_strlen(str))
 		str = add_pad_left(str, a.width);
 	return (str);
@@ -40,12 +42,16 @@ char static	*mk_string_c(t_opt a, char *str)
 	}
 	else
 		str = ft_strdup(a.data);
-	if (ft_strlen(str) == 0)
+	if (ft_strlen(str) == 0 && a.width > 0)
+		a.width--;
+	if (a.width > 0 && a.c_zero == 1)
 	{
-		if (a.width > 0)
-			a.width--;
+		if (a.indicator == '-')
+			str = add_pad_right(str, a.width);
+		else
+			str = add_pad_left(str, a.width);
 	}
-	if (a.width > 0)
+	if (a.width > 1 && a.c_zero == 0)
 	{
 		if (a.indicator == '-')
 			str = add_pad_right(str, a.width);
@@ -58,16 +64,19 @@ char static	*mk_string_c(t_opt a, char *str)
 char static	*mk_string_prc(t_opt a, char *str)
 {
 	str = ft_strdup(a.data);
-	if (a.width > 1 && a.indicator != '-')
-		str = add_pad_left(str, a.width);
-	if (a.width > 1 && a.indicator == '-')
+	if (a.width > 1 && a.indicator == '0')
+		str = add_zero_left(str, a.width);
+	else if (a.width > 1 && a.indicator == '-')
 		str = add_pad_right(str, a.width);
+	else if (a.width > 1 && a.indicator != '-')
+		str = add_pad_left(str, a.width);
 	return (str);
 }
 
 char static	*mk_string_p(t_opt a, char *str)
 {
-	if (a.data[0] == '0' && a.data[1] == '\0' && a.prec_exist == 1)
+	if (a.data[0] == '0' && a.data[1] == '\0' && a.prec_exist == 1
+	&& a.precision == 0)
 		str = ft_strdup("0x");
 	else
 	{
@@ -91,7 +100,7 @@ char		*make_string(t_opt a, char *str)
 		str = mk_string_d(a, str);
 	else if (a.type == 's')
 		str = mk_string_s(a, str);
-	else if (a.type == 'c')
+	else if (a.type == 'c' || a.type == 'o')
 		str = mk_string_c(a, str);
 	else if (a.type == '%')
 		str = mk_string_prc(a, str);

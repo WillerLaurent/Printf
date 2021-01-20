@@ -6,7 +6,7 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 14:09:45 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/19 07:52:38 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/20 07:26:53 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int	read_string(const char *input, va_list *list)
 			i++;
 			count_var = check_input(input, list, i);
 			count_char += count_var;
-			while (search_convert(input[i]) == 0)
+			while (search_indicator(input[i]) == 1 || input[i] == '.'
+			|| ft_isdigit(input[i]) == 1 || input[i] == '*')
 				i++;
 		}
 		i++;

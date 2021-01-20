@@ -6,7 +6,7 @@
 /*   By: lwiller <lwiller@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 10:05:43 by lwiller           #+#    #+#             */
-/*   Updated: 2021/01/12 15:57:46 by lwiller          ###   ########lyon.fr   */
+/*   Updated: 2021/01/20 07:16:54 by lwiller          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,23 @@ t_opt	check_precision(const char *input, t_opt a, int i, va_list *list)
 	return (a);
 }
 
+t_opt	find_type(char c, va_list *list, t_opt a)
+{
+	if (search_convert(c))
+	{
+		a.type = c;
+		a = check_convert(a, list);
+	}
+	else
+	{
+		a.type = 'o';
+		a.data = ft_calloc(2, sizeof(char));
+		a.data[0] = c;
+		a.malloc_data = 1;
+	}
+	return (a);
+}
+
 t_opt	check_opt(const char *input, int i, t_opt a, va_list *list)
 {
 	if (search_indicator(input[i]))
@@ -114,10 +131,6 @@ t_opt	check_opt(const char *input, int i, t_opt a, va_list *list)
 		while (ft_isdigit(input[i]) || input[i] == '-' || input[i] == '*')
 			i++;
 	}
-	if (search_convert(input[i]))
-	{
-		a.type = input[i];
-		a = check_convert(a, list);
-	}
+	a = find_type(input[i], list, a);
 	return (a);
 }
